@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "434904832906",
+    "firebase_url": "https://sample-map-65d34-default-rtdb.firebaseio.com",
+    "project_id": "sample-map-65d34",
+    "storage_bucket": "sample-map-65d34.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:434904832906:android:b629513f7eafd038984673",
+        "android_client_info": {
+          "package_name": "com.samplemap.sample_map"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0E6MJ4OLY7eZKMMiKarusdyy7lfDaKJU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
