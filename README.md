@@ -1,6 +1,12 @@
 # School Vehicle Tracker
 
-A new Flutter project.
+This Flutter application allows you to track school bus on a map in real-time.It utilizes Firebase for the database and sends local notifications when a bus is within 1km of your location.
+
+## Features
+
+- Real-time location tracking of school bus.
+- Display school bus routes on the map.
+- Local notifications for nearby bus.
 
 ## Getting Started
 
