@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sample_map/screens/map/map_view_page.dart';
-import 'package:sample_map/screens/map/update_map.dart';
+import 'package:sample_map/screens/parent_view/map_view_page.dart';
+import 'package:sample_map/screens/driver_view/update_map.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

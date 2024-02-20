@@ -28,7 +28,7 @@ class _UpdateMapState extends State<UpdateMap> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Update"),
+        title: const Text("Bus"),
         centerTitle: true,
       ),
       body: Center(
