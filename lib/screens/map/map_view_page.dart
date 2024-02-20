@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'dart:ui' as ui;
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geolocator/geolocator.dart';
@@ -42,14 +44,38 @@ class _MapViewPageState extends State<MapViewPage> {
     super.initState();
   }
 
+  List<String> images = ["assets/icons/school_bus_icon.png"];
+  Future<Uint8List> getImages(String path, int width) async {
+    ByteData data = await rootBundle.load(path);
+    ui.Codec codec = await ui.instantiateImageCodec(data.buffer.asUint8List(),
+        targetHeight: width);
+    ui.FrameInfo fi = await codec.getNextFrame();
+    return (await fi.image.toByteData(format: ui.ImageByteFormat.png))!
+        .buffer
+        .asUint8List();
+  }
+
+  final List<Marker> markers = <Marker>[];
+
+  loadData() async {
+    for (int i = 0; i < images.length; i++) {
+      final Uint8List customIcon = await getImages(images[i], 100);
+      markers.add(
+        Marker(
+          markerId: const MarkerId("driver"),
+          position: driver,
+          icon: BitmapDescriptor.fromBytes(customIcon),
+          infoWindow: const InfoWindow(
+            title: "School Bus",
+          ),
+        ),
+      );
+      setState(() {});
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final Set<Marker> markers = {
-      Marker(
-        markerId: const MarkerId("driver"),
-        position: driver,
-      ),
-    };
     return Scaffold(
       appBar: AppBar(
         title: const Text("Sample Map"),
@@ -59,7 +85,7 @@ class _MapViewPageState extends State<MapViewPage> {
       body: Stack(children: [
         GoogleMap(
           onMapCreated: onMapCreated,
-          markers: markers,
+          markers: Set<Marker>.from(markers),
           onCameraMove: (_) {},
           initialCameraPosition: CameraPosition(target: parent, zoom: 11.0),
           polylines: {
@@ -101,7 +127,7 @@ class _MapViewPageState extends State<MapViewPage> {
 
   Future getPolyPoints() async {
     PolylinePoints polylinePoints = PolylinePoints();
-    String googleAPIKey =googleApiKey;
+    String googleAPIKey = googleApiKey;
     // Position currentPosition = await getCurrentLocation();
     PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
         googleAPIKey,
@@ -134,13 +160,13 @@ class _MapViewPageState extends State<MapViewPage> {
     StreamSubscription _subscription;
     FirebaseApp secondaryApp = Firebase.app(defaultFirebaseAppName);
     DatabaseReference ref = FirebaseDatabase.instanceFor(
-            app: secondaryApp,
-            databaseURL: dbend)
+            app: secondaryApp, databaseURL: "https://$dbend")
         .ref('currentlocation')
         .child('1');
     _subscription = ref.onValue.listen((event) async {
       final data = event.snapshot.value as Map?;
       driver = LatLng(data?['latitude'], data?['longitude']);
+      loadData();
       getPolyPoints();
       setState(() {});
     });
@@ -170,15 +196,17 @@ class _MapViewPageState extends State<MapViewPage> {
         AndroidNotificationDetails('channel_id', 'Channel Name',
             channelDescription: 'Channel Description',
             importance: Importance.max,
-            priority: Priority.high,icon: 'launch_background',
+            priority: Priority.high,
+            icon: 'launch_background',
             ticker: 'ticker');
 
-    int notification_id = 1;
-    const NotificationDetails notificationDetails =
-        NotificationDetails(android: androidNotificationDetails,);
+    int notificationId = 1;
+    const NotificationDetails notificationDetails = NotificationDetails(
+      android: androidNotificationDetails,
+    );
 
     await flutterLocalNotificationsPlugin.show(
-      notification_id,
+      notificationId,
       'title',
       'value',
       notificationDetails,
@@ -186,8 +214,3 @@ class _MapViewPageState extends State<MapViewPage> {
     );
   }
 }
-// ndm 11.685675108084403, 75.65532341678826
-// kayakk 11.662552060183488, 75.75030561344798
-// kkt 11.678103041446448, 75.69987777518847
-// mok 11.673940702473077, 75.72808952069701
-//11.662074355732592, 75.75092462162493

@@ -65,8 +65,7 @@ class _UpdateMapState extends State<UpdateMap> {
   }
 
   Future savePositionToDb() async {
-    final url = Uri.https(dbend,
-        "currentlocation/1.json");
+    final url = Uri.https(dbend, "currentlocation/1.json");
     await http.put(
       url,
       headers: {'content-type': 'application/json'},
@@ -123,7 +122,7 @@ class _UpdateMapState extends State<UpdateMap> {
       error = 'Permission denied by user';
       currentPosition = null;
       isLoading = false;
-      if(mounted) {
+      if (mounted) {
         setState(() {});
       }
     }
