@@ -8,7 +8,7 @@ This Flutter application allows you to track school bus on a map in real-time.It
 - Display school bus routes on the map.
 - Local notifications for nearby bus.
 
-<p align = "center"><img src = 'assets/screenshots/map_screenshot.jpg' height = "500" width = "300"></p>
+<p><img src = 'assets/screenshots/map_screenshot.jpg' height = "500" width = "300"></p>
 
 ## Google Maps Setup
 
