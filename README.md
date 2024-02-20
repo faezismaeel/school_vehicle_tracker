@@ -1,4 +1,4 @@
-# sample_map
+# School Vehicle Tracker
 
 A new Flutter project.
 
