@@ -104,7 +104,7 @@ class _MapViewPageState extends State<MapViewPage> {
               alignment: Alignment.topCenter,
               child: Container(
                   height: 60,
-                  width: 180,
+                  // width: 180,
                   color: Colors.white,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -210,3 +210,4 @@ class _MapViewPageState extends State<MapViewPage> {
   }
 }
 // 11.676662538899553, 75.77947314115487
+// 11.751270291093363, 75.49237291573084
