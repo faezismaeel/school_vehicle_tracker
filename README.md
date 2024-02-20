@@ -18,11 +18,28 @@ This Flutter application allows you to track school bus on a map in real-time.It
 4. Follow the setup instructions for the [google_maps_flutter](https://pub.dev/packages/google_maps_flutter) package.
 
 
-## Usage
+## Flow
 
-- View the map to see the location of school buses.
-- Click on a bus to see more details.
-- Receive notifications for bus arrival and departure at your location.
+1. Saving driver's location to Firebase database.
+2. Showing driver's location and changes from the Firebase database to parents.
+3. Parents will receive local notifications when a school bus is within 1 km of their current location.
+4. Notifications will include information about the bus, such as its route and estimated time of arrival at the user's location.
+
+## How to use
+
+- Clone the project repository from GitHub using the command git clone.
+- Create a Firebase Project.
+- Create google maps API key from Google Cloud Console.
+- Create a file `dbend.dart` and store a String `Firebase Project URL`.
+```dart 
+const dbend = Your Firebase Project URL
+```
+- Create another file `apikey.dart` and store a String `Google API Key`.
+```dart 
+const googleApiKey = Your Google API Key
+```
+- Ensure that the app has permission to access the device's location to provide accurate bus tracking and notification services.
+
 
 ## Dependencies
 

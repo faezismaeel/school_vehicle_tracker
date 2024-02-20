@@ -202,8 +202,8 @@ class _MapViewPageState extends State<MapViewPage> {
 
     await flutterLocalNotificationsPlugin.show(
       notificationId,
-      'title',
-      'value',
+      'Bus is nearby you',
+      'Time,Km',
       notificationDetails,
       payload: 'Not present',
     );
