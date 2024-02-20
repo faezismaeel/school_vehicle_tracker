@@ -102,24 +102,19 @@ class _MapViewPageState extends State<MapViewPage> {
           padding: const EdgeInsets.all(8.0),
           child: Align(
               alignment: Alignment.topCenter,
-              child: InkWell(
-                onTap: () {
-                  showNotificationWithActions();
-                },
-                child: Container(
-                    height: 60,
-                    width: 180,
-                    color: Colors.white,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: [
-                          Text('Distance :  ${distanceBetween?.text}'),
-                          Text('Duration :  ${durationValue?.text}'),
-                        ],
-                      ),
-                    )),
-              )),
+              child: Container(
+                  height: 60,
+                  width: 180,
+                  color: Colors.white,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        Text('Distance :  ${distanceBetween?.text}'),
+                        Text('Duration :  ${durationValue?.text}'),
+                      ],
+                    ),
+                  ))),
         ),
       ]),
     );
@@ -214,3 +209,4 @@ class _MapViewPageState extends State<MapViewPage> {
     );
   }
 }
+// 11.676662538899553, 75.77947314115487
